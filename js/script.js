@@ -2,6 +2,7 @@ import { Sudoku } from "./sudoku.js";
 import { turnIndexIntoPosition, turnPositionIntoIndex,  SIZE, TILE_NUMBER, SQUARE_NUMBER } from "./utilities.js";
 
 let sudoku;
+let inputTile;
 let selectedTile;
 let selectedBoardTile;
 let tileNumber;
@@ -130,6 +131,7 @@ inputButtons.forEach((inputBtn, index) => {
 
       inputBtn.classList.add('selected');
       selectedTile = index + 1;
+      inputTile = inputBtn;
     }
     updateMove();
   });
@@ -216,6 +218,8 @@ function fillWithCorrectNumbers(boardTiles, number) {
   } else {
     makeIncorrect(boardTiles, number);
   }
+  inputTile.classList.remove('selected');
+  selectedTile = null;
 }
 
 function makeCorrect(boardTiles) {
@@ -230,6 +234,7 @@ function makeIncorrect(boardTiles, number) {
   selectedBoardTile.classList.add('incorrect');
   getDuplicates(number, boardTiles);
   setTimeout(() => {
+    console.log(selectedBoardTile);
     selectedBoardTile.classList.remove('incorrect', 'selected_board_tile');
     selectedBoardTile.textContent = '.';
     for (let i = 0; i < boardTiles.length; i++) {
