@@ -230,7 +230,6 @@ function makeIncorrect(boardTiles, number) {
   selectedBoardTile.classList.add('incorrect');
   getDuplicates(number, boardTiles);
   setTimeout(() => {
-    console.log(selectedBoardTile);
     selectedBoardTile.classList.remove('incorrect', 'selected_board_tile');
     selectedBoardTile.textContent = '.';
     for (let i = 0; i < boardTiles.length; i++) {
